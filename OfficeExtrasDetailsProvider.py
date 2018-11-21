@@ -49,7 +49,7 @@ class OfficeExtrasDetailsProvider(Processor):
     def get_longproduct(self, shortproduct):
         switcher = {
             "OneNote": "onenote.standalone.365",
-            "OneDrive": "onerive.standalone",
+            "OneDrive": "onedrive.standalone",
             "SkypeforBusiness": "skypeforbusiness.standalone",
             "Teams": "teams.standalone",
             "InTune": "intunecompanyportal.standalone",

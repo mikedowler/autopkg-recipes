@@ -14,7 +14,7 @@
         <string>2016</string>
     </dict>
     <key>MinimumVersion</key>
-    <string>0.4.1</string>
+    <string>1.0.4</string>
     <key>Process</key>
     <array>
         <dict>
@@ -30,13 +30,17 @@
         </dict>
         <dict>
             <key>Processor</key>
-            <string>CURLDownloader</string>
+            <string>URLDownloader</string>
             <key>Arguments</key>
             <dict>
                 <key>url</key>
                 <string>%download_url%</string>
                 <key>filename</key>
                 <string>%NAME%-%version%.pkg</string>
+                <key>curl_opts</key>
+                <array>
+                	<string>--no-alpn</string>
+                </array>
             </dict>
         </dict>
         <dict>

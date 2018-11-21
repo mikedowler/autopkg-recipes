@@ -5,7 +5,7 @@
     <key>Description</key>
     <string>Downloads the latest Microsoft Office associated product installer package.</string>
     <key>Identifier</key>
-    <string>com.github.mikedowler.download.Office</string>
+    <string>com.github.mikedowler.download.OfficeExtras</string>
     <key>Input</key>
     <dict>
         <key>NAME</key>

@@ -75,7 +75,7 @@ class OfficeExtrasDetailsProvider(Processor):
                 download_url = package.find("download").text
                 minimum_os_ver = package.find("min_os").text
                 break
-        self.env["version"] = version
+        self.env["version"] = version.split()[0]
         self.env["download_url"] = download_url
         self.env["office_extras_details_summary_result"] = {
             "summary_text": "The following details were found:",

@@ -42,7 +42,7 @@ class OfficeDetailsProvider(Processor):
         "version": {
             "description": "Version number of the latest Office Suite release.",
         },
-        "download_url": {
+        "url": {
             "description": "The URL used to download the Office Suite required.",
         },
         "office_details_summary_results": {
@@ -82,21 +82,21 @@ class OfficeDetailsProvider(Processor):
         self.env["version"] = version
     
     def get_packagedetails(self, FEED_URL):
-        """Parse the macadmins.software/latest.xml feed for the product download url and minimum os value"""
+        """Parse the macadmins.software/latest.xml feed for the product download url"""
         try:
             raw_xml = urllib2.urlopen(FEED_URL)
             xml = raw_xml.read()
         except BaseException as e:
             raise ProcessorError("Can't download %s: %s" % (FEED_URL, e))
-        download_url = ""
+        url = ""
         longproduct = self.get_longproduct(self.env["product"])
         root = ET.fromstring(xml)
         for package in root.findall("package"):
             if package.find("id").text == "com.microsoft." + longproduct + "." + self.env["edition"]:
-                download_url = package.find("download").text
+                url = package.find("download").text
                 break
         
-        self.env["download_url"] = download_url
+        self.env["url"] = url
         self.env["office_details_summary_results"] = {
             "summary_text": "The following details were found:",
             "report_fields": ["product", "edition", "version", "URL"],
@@ -104,7 +104,7 @@ class OfficeDetailsProvider(Processor):
                 "product": self.env["product"],
                 "edition": self.env["edition"],
                 "version": self.env["version"],
-                "URL": download_url,
+                "URL": url,
             },
         }
     

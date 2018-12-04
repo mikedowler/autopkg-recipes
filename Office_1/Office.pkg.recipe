@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Description</key>
+    <string>Packages the Office installer for copying to the target computer.</string>
+    <key>Identifier</key>
+    <string>com.github.mikedowler.pkg.Office</string>
+    <key>Input</key>
+    <dict>
+    </dict>
+    <key>MinimumVersion</key>
+    <string>1.0.4</string>
+    <key>ParentRecipe</key>
+    <string>com.github.mikedowler.download.Office</string>
+    <key>Process</key>
+    <array>
+        <dict>
+            <key>Processor</key>
+            <string>PkgRootCreator</string>
+            <key>Comment</key>
+            <string>Create a package root for the metapackage.</string>
+            <key>Arguments</key>
+            <dict>
+                <key>pkgroot</key>
+                <string>%RECIPE_CACHE_DIR%/install_office</string>
+                <key>pkgdirs</key>
+                <dict>
+                    </key>tmp</key>
+                    <string>0755</string>
+                    <key>tmp/install_office</key>
+                    <string>0755</string>
+                </dict>
+            </dict>
+        </dict>
+        <dict>
+            <key>Processor</key>
+            <string>Copier</string>
+            <key>Comment</key>
+            <string>Copy installer to /tmp/install_office</string>
+            <key>Arguments</key>
+            <dict>
+                <key>source_path</key>
+                <string>TBC</string>
+                <key>destination_path</key>
+                <string>%pkgroot%/tmp/install_office</string>
+            </dict>
+        </dict>
+        <dict>
+            <key>Processor</key>
+            <string>PkgInfoCreator</string>
+            <key>Comment</key>
+            <string>Make PackageInfo file for our package.</string>
+            <key>Arguments</key>
+            <dict>
+                <key>version</key>
+                <string>%version%</string>
+                <key>template_path</key>
+                <string>PackageInfoTemplate</string>
+                <key>infofile</key>
+                <string>%RECIPE_CACHE_DIR%/PackageInfo</string>
+                <key>pkgtype</key>
+                <string>flat</key>
+            </dict>
+        </dict>
+        <dict>
+            <key>Processor</key>
+            <string>PkgCreator</string>
+            <key>Comment</key>
+            <string>Build the package.</string>
+            <key>Arguments</key>
+            <dict>
+                <key>pkgname</key>
+                <string>install%NAME%-%version%</string>
+                <key>pkg_request</key>
+                <dict>
+                    <key>pkgdir</key>
+                    <string>%RECIPE_CACHE_DIR%</string>
+                    <key>id</key>
+                    <string>com.github.mikedowler.install_office</string>
+                    <key>infofile</key>
+                    <string>%RECIPE_CACHE_DIR%/PackageInfo</string>
+                    <key>resources</key>
+                    <string>Resources</string>
+                    <key>options</key>
+                    <string>purge_ds_store</string>
+                    <key>scripts</key>
+                    <string>Scripts</string>
+                    <key>chown</key>
+                    <array>
+                        <dict>
+                            <key>path</key>
+                            <string>tmp</string>
+                            

@@ -37,10 +37,6 @@
                 <string>%download_url%</string>
                 <key>filename</key>
                 <string>%NAME%-%version%.pkg</string>
-                <key>curl_opts</key>
-                <array>
-                	<string>--no-alpn</string>
-                </array>
             </dict>
         </dict>
         <dict>

@@ -5,7 +5,7 @@
     <key>Description</key>
     <string>Packages the Office installer for copying to the target computer.</string>
     <key>Identifier</key>
-    <string>com.github.mikedowler.office_1.pkg.Office</string>
+    <string>com.github.mikedowler.pkg.Office</string>
     <key>Input</key>
     <dict>
         <key>NAME</key>

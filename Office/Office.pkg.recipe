@@ -32,7 +32,7 @@
                 <string>%RECIPE_CACHE_DIR%/install_office</string>
                 <key>pkgdirs</key>
                 <dict>
-                    </key>tmp</key>
+                    <key>tmp</key>
                     <string>0755</string>
                     <key>tmp/install_office</key>
                     <string>0755</string>
@@ -66,7 +66,7 @@
                 <key>infofile</key>
                 <string>%RECIPE_CACHE_DIR%/install_office/PackageInfo</string>
                 <key>pkgtype</key>
-                <string>flat</key>
+                <string>flat</string>
             </dict>
         </dict>
         <dict>
@@ -100,17 +100,17 @@
                             <key>user</key>
                             <string>root</string>
                             <key>group</key>
-                            <string>wheel</wheel>
+                            <string>wheel</string>
                         </dict>
                         <dict>
                             <key>path</key>
                             <string>tmp/install_office</string>
                             <key>user</key>
-                            <string>root</key>
+                            <string>root</string>
                             <key>group</key>
                             <string>wheel</string>
                             <key>mode</key>
-                            <string>0755
+                            <string>0755</string>
                         </dict>
                         <dict>
                             <key>path</key>

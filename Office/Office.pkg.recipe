@@ -5,14 +5,20 @@
     <key>Description</key>
     <string>Packages the Office installer for copying to the target computer.</string>
     <key>Identifier</key>
-    <string>com.github.mikedowler.pkg.Office</string>
+    <string>com.github.mikedowler.office_1.pkg.Office</string>
     <key>Input</key>
     <dict>
+        <key>NAME</key>
+        <string>Office</string>
+        <key>EDITION</key>
+        <string>2016</string>
+        <key>PARENT</key>
+        <string>com.github.mikedowler.office_1.download.Office</string>
     </dict>
     <key>MinimumVersion</key>
     <string>1.0.4</string>
     <key>ParentRecipe</key>
-    <string>com.github.mikedowler.download.Office</string>
+    <string>%PARENT%</string>
     <key>Process</key>
     <array>
         <dict>
@@ -37,11 +43,11 @@
             <key>Processor</key>
             <string>Copier</string>
             <key>Comment</key>
-            <string>Copy installer to /tmp/install_office</string>
+            <string>Copy installer to /tmp/install_office within the metapackage structure</string>
             <key>Arguments</key>
             <dict>
                 <key>source_path</key>
-                <string>TBC</string>
+                <string>%pathname%</string>
                 <key>destination_path</key>
                 <string>%pkgroot%/tmp/install_office</string>
             </dict>
@@ -58,7 +64,7 @@
                 <key>template_path</key>
                 <string>PackageInfoTemplate</string>
                 <key>infofile</key>
-                <string>%RECIPE_CACHE_DIR%/PackageInfo</string>
+                <string>%RECIPE_CACHE_DIR%/install_office/PackageInfo</string>
                 <key>pkgtype</key>
                 <string>flat</key>
             </dict>
@@ -75,11 +81,11 @@
                 <key>pkg_request</key>
                 <dict>
                     <key>pkgdir</key>
-                    <string>%RECIPE_CACHE_DIR%</string>
+                    <string>%RECIPE_CACHE_DIR%/install_office</string>
                     <key>id</key>
                     <string>com.github.mikedowler.install_office</string>
                     <key>infofile</key>
-                    <string>%RECIPE_CACHE_DIR%/PackageInfo</string>
+                    <string>%RECIPE_CACHE_DIR%/install_office/PackageInfo</string>
                     <key>resources</key>
                     <string>Resources</string>
                     <key>options</key>
@@ -91,4 +97,35 @@
                         <dict>
                             <key>path</key>
                             <string>tmp</string>
-                            
+                            <key>user</key>
+                            <string>root</string>
+                            <key>group</key>
+                            <string>wheel</wheel>
+                        </dict>
+                        <dict>
+                            <key>path</key>
+                            <string>tmp/install_office</string>
+                            <key>user</key>
+                            <string>root</key>
+                            <key>group</key>
+                            <string>wheel</string>
+                            <key>mode</key>
+                            <string>0755
+                        </dict
+                        <dict>
+                            <key>path</key>
+                            <string>tmp/install_office/%NAME%-%version%.pkg</string>
+                            <key>user</key>
+                            <string>root</string>
+                            <key>group</key>
+                            <string>wheel</string>
+                            <key>mode</key>
+                            <string>0644</string>
+                        </dict>
+                    </array>
+                </dict>
+            </dict>
+        </dict>
+    </array>
+</dict>
+</plist>

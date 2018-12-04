@@ -111,7 +111,7 @@
                             <string>wheel</string>
                             <key>mode</key>
                             <string>0755
-                        </dict
+                        </dict>
                         <dict>
                             <key>path</key>
                             <string>tmp/install_office/%NAME%-%version%.pkg</string>

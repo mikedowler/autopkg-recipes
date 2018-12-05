@@ -81,7 +81,7 @@
                     <key>pkgdir</key>
                     <string>%RECIPE_CACHE_DIR%/install_office</string>
                     <key>id</key>
-                    <string>com.github.mikedowler.install_office</string>
+                    <string>com.github.mikedowler.installoffice</string>
                     <key>infofile</key>
                     <string>%RECIPE_CACHE_DIR%/install_office/PackageInfo</string>
                     <key>resources</key>

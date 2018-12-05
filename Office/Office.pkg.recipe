@@ -18,7 +18,7 @@
     <key>MinimumVersion</key>
     <string>1.0.4</string>
     <key>ParentRecipe</key>
-    <string>com.github.mikedowler.office_1.download.Office</string>
+    <string>%PARENT%</string>
     <key>Process</key>
     <array>
         <dict>

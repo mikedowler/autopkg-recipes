@@ -74,7 +74,7 @@
             </dict>
             <dict>
                 <key>Processor</key>
-                <string>PkgCreator</key>
+                <string>PkgCreator</string>
                 <key>Comment</key>
                 <string>Build a new package witthout the scripts.</string>
                 <key>Arguments</key>

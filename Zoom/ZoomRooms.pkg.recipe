@@ -74,6 +74,12 @@
             </dict>
             <dict>
                 <key>Processor</key>
+                <string>com.github.homebysix.VersionSplitter/VersionSplitter</string>
+                <key>Comment</key>
+                <string>Split the version number to remove the build number.</string>
+            </dict>
+            <dict>
+                <key>Processor</key>
                 <string>PkgCreator</string>
                 <key>Comment</key>
                 <string>Build a new package witthout the scripts.</string>

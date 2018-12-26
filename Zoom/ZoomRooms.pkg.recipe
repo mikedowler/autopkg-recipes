@@ -1,53 +1,102 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
-   <dict>
-      <key>Description</key>
-      <string>Downloads the latest version of the ZoomRooms installer, extracts the application, and repackages it.</string>
-      <key>Identifier</key>
-      <string>com.github.mikedowler.pkg.zoomrooms</string>
-      <key>Input</key>
-      <dict>
-         <key>NAME</key>
-         <string>ZoomRooms</string>
-      </dict>
-      <key>MinimumVersion</key>
-      <string>1.0.0</string>
-      <key>ParentRecipe</key>
-      <string>com.github.homebysix.download.ZoomPresence</string>
-      <key>Process</key>
-      <array>
-         <dict>
-            <key>Processor</key>
-            <string>FlatPkgUnpacker</string>
-            <key>Arguments</key>
+    <dict>
+        <key>Description</key>
+        <string>Downloads the latest version of the ZoomRooms installer, extracts the application, and repackages it.</string>
+        <key>Identifier</key>
+        <string>com.github.mikedowler.pkg.zoomrooms</string>
+        <key>Input</key>
+        <dict>
+            <key>NAME</key>
+            <string>ZoomRooms</string>
+        </dict>
+        <key>MinimumVersion</key>
+        <string>1.0.0</string>
+        <key>ParentRecipe</key>
+        <string>com.github.homebysix.download.ZoomPresence</string>
+        <key>Process</key>
+        <array>
             <dict>
-               <key>destination_path</key>
-               <string>%RECIPE_CACHE_DIR%/downloads/unpack</string>
-               <key>flat_pkg_path</key>
-               <string>%pathname%</string>
+                <key>Processor</key>
+                <string>FlatPkgUnpacker</string>
+                <key>Comment</key>
+                <string>Unpack the downloaded package so we can extract the payload.</string>
+                <key>Arguments</key>
+                <dict>
+                    <key>flat_pkg_path</key>
+                    <string>%pathname%</string>
+                    <key>destination_path</key>
+                    <string>%RECIPE_CACHE_DIR%/%NAME%/unpack</string>
+                </dict>
             </dict>
-         </dict>
-         <dict>
-            <key>Processor</key>
-            <string>FileFinder</string>
-            <key>Arguments</key>
             <dict>
-               <key>pattern</key>
-               <string>%RECIPE_CACHE_DIR%/downloads/unpack/zp.pkg</string>
+                <key>Processor</key>
+                <string>PkgRootCreator</string>
+                <key>Comment</key>
+                <string>Create a pkg root; we'll copy the payload here.</string>
+                <key>Arguments</key>
+                <dict>
+                    <key>pkgroot</key>
+                    <string>%RECIPE_CACHE_DIR%/%NAME%/root</string>
+                    <key>pkgdirs</key>
+                    <dict>
+                        <key>Applications</key>
+                        <string>0755</string>
+                    </dict>
+                </dict>
             </dict>
-         </dict>
-         <dict>
-            <key>Processor</key>
-            <string>PkgPayloadUnpacker</string>
-            <key>Arguments</key>
             <dict>
-               <key>destination_path</key>
-               <string>%RECIPE_CACHE_DIR%/downloads/payload</string>
-               <key>pkg_payload_path</key>
-               <string>%found_filename%/Payload</string>
+                <key>Processor</key>
+                <string>PkgPayloadUnpacker</string>
+                <key>Comment</key>
+                <string>Unpack the package payload to the app directory.</string>
+                <key>Arguments</key>
+                <dict>
+                <key>pkg_payload_path</key>
+                <string>%RECIPE_CACHE_DIR%/%NAME%/unpack/zp.pkg/Payload</string>
+                <key>destination_path</key>
+                <string>%pkgroot%/Applications/ZoomRooms.app</string>
+                </dict>
             </dict>
-         </dict>
-      </array>
-   </dict>
+            <dict>
+                <key>Processor</key>
+                <string>Versioner</string>
+                <key>Comment</key>
+                <string>Get the application version number from the payload to use for our package.</string>
+                <key>Arguments</key>
+                <dict>
+                    <key>input_plist_path</key>
+                    <string>%destination_path%/Contents/Info.plist</string>
+                    <key>plist_version_key</key>
+                    <string>CFBundleVersion</string>
+                </dict>
+            </dict>
+            <dict>
+                <key>Processor</key>
+                <string>PkgCreator</key>
+                <key>Comment</key>
+                <string>Build a new package witthout the scripts.</string>
+                <key>Arguments</key>
+                <dict>
+                    <key>pkg_request</key>
+                    <dict>
+                        <key>pkgroot</key>
+                        <string>%pkgroot%</string>
+                        <key>chown</key>
+                        <array>
+                            <dict>
+                                <key>user</key>
+                                <string>root</key>
+                                <key>group</key>
+                                <string>wheel</string>
+                                <key>path</key>
+                                <string>Applications</string>
+                            </dict>
+                        </array>
+                    </dict>
+                </dict>
+            </dict>
+        </array>
+    </dict>
 </plist>

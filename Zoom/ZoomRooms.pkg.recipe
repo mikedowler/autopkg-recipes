@@ -81,6 +81,8 @@
                 <dict>
                     <key>pkg_request</key>
                     <dict>
+                        <key>pkgname</key>
+                        <string>%NAME%-%version%</string>
                         <key>pkgroot</key>
                         <string>%pkgroot%</string>
                         <key>chown</key>
@@ -94,6 +96,8 @@
                                 <string>Applications</string>
                             </dict>
                         </array>
+                        <key>options</key>
+                        <string>purge_ds_store</string>
                     </dict>
                 </dict>
             </dict>

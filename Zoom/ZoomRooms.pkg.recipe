@@ -85,6 +85,8 @@
                         <string>%NAME%-%version%</string>
                         <key>pkgroot</key>
                         <string>%pkgroot%</string>
+                        <key>id</key>
+                        <string>us.zoom.ZoomPresence.pkg</string>
                         <key>chown</key>
                         <array>
                             <dict>
